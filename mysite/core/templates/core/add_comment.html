@@ -1,0 +1,8 @@
+{% if user.is_authenticated %}
+    <h2>Добавить комментарий</h2>
+        <form method="post" action="{% url 'add_comment' post.pk %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Отправить комментарий</button>
+        </form>
+{% endif %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <h1>Профиль пользователя</h1>
+        {% if user.avatar %}
+            <img src="{{ user.avatar.url }}" alt="Аватар пользователя" style="max-width: 200px; max-height: 200px;">
+        {% else %}
+            <img src="/media/default_avatar.png" alt="Аватар по умолчанию" style="max-width: 200px; max-height: 200px;">
+        {% endif %}
+        <p><strong>Имя пользователя: </strong>{{ user.username }}</p>
+        <p><strong>Email: </strong>{{ user.email }}</p>
+        {% if user.birth_date %}
+            <p><strong>Дата рождения: </strong>{{ user.birth_date }}</p>
+        {% endif %}
+        <a href="{% url 'profile_editing' %}">Редактировать профиль</a>
+    </div>
+{% endblock content %}

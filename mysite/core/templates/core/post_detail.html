@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="post-detail">
+        <h1>{{ post.title }}</h1>
+        <p>Автор: {{ post.author }}</p>
+        <p>By {{ post.author }} on {{ post.created_at }}</p>
+        <div class="post-content">
+            {{ post.content|linebreaks }}
+        </div>
+        <p><a href="{% url 'post_update' post.pk %}">Редактировать</a></p>
+        <div class="post-comments">
+            <h2>Коментарии</h2>
+            {% for comment in post.comments.all %}
+                <div class="comment">
+                    <p>Автор: {{ comment.user }}</p>
+                    <p>Текст: {{ comment.text }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div>
+            {% include "core/add_comment.html" %}
+        </div>
+    </div>
+{% endblock content %}
